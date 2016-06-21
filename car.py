@@ -14,34 +14,34 @@ class Car(object):
        # By using a single or double _ before the variable name defines it as private.
        # Private protects the variables from change and means anyone can implement them using
        # getters and setters without changing the base object. 
-       
+
     def getColour(self):
         return self.__colour
-        
+
     def getMake(self):
         return self.__make
-        
+
     def getMileage(self):
         return self.__mileage
-        
+
     def setColour(self, colour):
         self.__colour = colour
-        
+
     def setMake(self, make):
         self.__make = make
-        
+
     def setMileage(self, mileage):
         self.__mileage = mileage
-        
+
     def paint(self, colour):
         print('Getting a paint job - the new colour is ' + colour)
         self.__colour = colour
-        
+
     def move(self, distance):
         print('Moving the car ' + str(distance) + 'kms')
         self.__mileage = self.__mileage + distance
-        
-    # Getter and setter methods can be implemented in new and different ways and add new
+
+    # Getter and setter functions can be implemented in new and different ways and add new
     # functions, variables or functionality etc.  The paint job updates the colour of the specific
     # car object without changing the value held in the private variable.  The move is used to test
     # the car for example 15km's that should make the mileage of the car in turn increase by 15.
@@ -60,7 +60,9 @@ class ElectricCar(Car):
         
     # The 1st function takes in all the functions/variables that make up Car and adds a new
     # variable called numberOfFuelCells.  As in Car getter and setters are used to access the object.
-		
+    # The electric car's will have 1 fuel cell as the default value.  While most cars have fuel cylinders
+    # electric cars require fuel cells to run.
+    
 class PetrolCar(Car):
 
 	def __init__(self):
@@ -72,15 +74,26 @@ class PetrolCar(Car):
 		
 	def setNumberOfFuelCylinders(self, value):
 		self.__numberOfFuelCylinders = value
-		
+        
+    # This class creates a petrol car object that is a sub class of car.  As in electric car
+    # all functions/variables of car are brought in.  There is a difference in the unique functions
+    # while an electric car has fuel cells, petrol cars have the numberOfFuelCylinders.  The
+    # default number of cylinders is 3.  Getters and setters are used to get the numberOfFuelCylinders
+    # variable and allows the user to set their own value for their own implementation without
+    # changing the default value of the fuel cylinders.
+
 class DieselCar(Car):
 
 	def __init__(self):
 		Car.__init__(self)
 		self.__numberOfFuelCylinders = 5
-		
+
 	def getNumberOfFuelCylinders(self):
 		return self.__numberOfFuelCylinders
-		
+
 	def setNumberOfFuelCylinders(self, value):
 		self.__numberOfFuelCylinders = value
+        
+    # A DieselCar sub class of car is created.  It inherits all the functions/variables
+    # from base class car.  Unlike PetorlCar which has a default of 3 cylinders, diesel will have
+    # 5 as the default value.

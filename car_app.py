@@ -9,7 +9,7 @@ red_car.setMake('Ferrari')
 
 print 'Make ' + red_car.getMake()
 
-red_car.paint('red')
+print('Getting a paint job - the new colour is ' + red_car.paint('red'))
 print 'Colour ' + red_car.getColour()
 
 red_car.move(15)
@@ -29,14 +29,15 @@ print('car3 numberFuelCells: ' + str(car3.getNumberOfFuelCells()))
 
 class Dealership(object):
 
-	def __init__(self):
-		self.electric_cars = []
-		self.petrol_cars = []
+    def __init__(self):
+        self.electric_cars = []
+        self.petrol_cars = []
 
-    for i in range(20):
-        cars.append(ElectricCar())
-    for i in range(15):
-        cars.append(PetrolCar())
+    def create_current_stock(self):
+        for i in range(20):
+           self.electric_cars.append(ElectricCar())
+        for i in range(15):
+           self.petrol_cars.append(PetrolCar())
 
     def stock_count():	
         print 'petrol cars in stock ' + str(len(petrol_cars))
@@ -50,23 +51,24 @@ class Dealership(object):
         while total < amount:
             car_list.pop()
             total = total + 1
-        petrol_cars.pop()
 
-    def process_car_rental(self)
+    def process_car_rental(self):
         answer = raw_input('Would you like to rent a yar? y/n')
         if answer == 'y':
             answer = raw_input('what type would you like? p/d')
             amount = int(raw_input('how many would you like?'))
-        if answer == 'p':
-            self.rent(self.petrol_cars, amount)
-        else:
-            self.rent(self.electric_cars, amount)
-            self.stock_count()
+            if answer == 'p':
+                self.rent(self.petrol_cars, amount)
+            else:
+                self.rent(self.electric_cars, amount)
+                self.stock_count()
+
 
 dealership = Dealership()
 dealership.create_current_stock()
-dealership.stock_count()		
+dealership.stock_count()
 proceed = 'y'
+
 while proceed == 'y':
     dealership.process_rental()
     proceed = raw_input('continue? y/n')
