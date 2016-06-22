@@ -1,4 +1,4 @@
-from car import Car, ElectricCar, PetrolCar
+from car import Car, ElectricCar, PetrolCar, DieselCar
 
 red_car = Car()
 print 'Colour ' + red_car.getColour()
@@ -32,18 +32,23 @@ class Dealership(object):
     def __init__(self):
         self.electric_cars = []
         self.petrol_cars = []
+        self.diesel_cars = []
 
     def create_current_stock(self):
         for i in range(20):
            self.electric_cars.append(ElectricCar())
         for i in range(15):
            self.petrol_cars.append(PetrolCar())
+        for i in range(10):
+            self.diesel_cars.append(DieselCar())
 
-    def stock_count():	
-        print 'petrol cars in stock ' + str(len(petrol_cars))
-        print 'electric cars cars in stock ' + str(len(electric_cars))
+    def stock_count(self):	
+        print 'petrol cars in stock ' + str(len(self.petrol_cars))
+        print 'electric cars in stock ' + str(len(self.electric_cars))
+        print 'diesel cars in stock ' + str(len(self.diesel_cars))
 
-    def rent(car_list, amount):
+
+    def rent(self, car_list, amount):
         if len(car_list) < amount:
             print 'Not enough cars in stock'
             return
@@ -53,12 +58,17 @@ class Dealership(object):
             total = total + 1
 
     def process_car_rental(self):
-        answer = raw_input('Would you like to rent a yar? y/n')
+        answer = raw_input('Would you like to rent a yar? y/n\n')
         if answer == 'y':
-            answer = raw_input('what type would you like? p/d')
-            amount = int(raw_input('how many would you like?'))
+            answer = raw_input('what type would you like? p/d/e\n')
+            amount = int(raw_input('how many would you like?\n'))
             if answer == 'p':
                 self.rent(self.petrol_cars, amount)
+                self.stock_count()
+                
+            elif answer == 'd':    
+                self.rent(self.diesel_cars, amount)
+                self.stock_count()
             else:
                 self.rent(self.electric_cars, amount)
                 self.stock_count()
@@ -70,8 +80,8 @@ dealership.stock_count()
 proceed = 'y'
 
 while proceed == 'y':
-    dealership.process_rental()
-    proceed = raw_input('continue? y/n')
+    dealership.process_car_rental()
+    proceed = raw_input('continue? y/n\n')
 
 car4 = PetrolCar()
 car4.setColour('Blue')
