@@ -7,7 +7,7 @@ print 'Make ' + red_car.getMake()
 
 red_car.setMake('Ferrari')
 print 'Make ' + red_car.getMake()
-print('Getting a paint job - the new colour is ' + str(red_car.paint('red')))
+red_car.paint('red')
 print 'Colour ' + red_car.getColour()
 
 red_car.move(15)

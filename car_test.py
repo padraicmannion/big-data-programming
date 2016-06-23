@@ -95,7 +95,8 @@ class TestDieselCar(unittest.TestCase):
 		self.assertEqual(8, self.diesel_car.getNumberOfFuelCylinders())
 
 	def test_car_mileage(self):
-		# Function for testing the mileage of a DieselCar class.  As in
+		# Function for testing the mileage of a DieselCar class.  As with other cars the default value is 0.
+		# The move function is called taking the value 8.  This moves the car by 8km's.
 		self.assertEqual(0, self.diesel_car.getMileage())
 		self.diesel_car.move(8)
 		self.assertEqual(8, self.diesel_car.getMileage())
