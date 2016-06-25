@@ -41,11 +41,9 @@ class Car(object):
         self.__mileage = mileage
 
     def paint(self, colour):
-        print('Getting a paint job - the new colour is ' + colour)
         self.__colour = colour
 
     def move(self, distance):
-        print('Moving the car ' + str(distance) + 'kms')
         self.__mileage = self.__mileage + distance
 
 

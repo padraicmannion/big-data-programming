@@ -1,33 +1,58 @@
+# 1st I am importing all the car class' from Car, next a welcome message for the rental service is displayed
+# to the user.  red_car is the name of the 1st object that takes in the functions from the generic Car base class.
 from car import Car, ElectricCar, PetrolCar, DieselCar
 
+print 'Welcome to DBS car rental below is a list of available cars and the car details\n.'
 red_car = Car()
-print 'Colour ' + red_car.getColour()
-print 'Mileage ' + str(red_car.getMileage())
-print 'Make ' + red_car.getMake()
 
+# setMake calls the function from the Car class with the same name.  It has 2 variables self and make.  I
+# am passing in the string Ferrari as the value for make.  This allows the app program to set a value
+# without changing the structure or default value for any variables.  getMake calls the function of the same
+# name in Car and returns the value of make which is added to the end of the print statement.
 red_car.setMake('Ferrari')
-print 'Make ' + red_car.getMake()
+print 'Our most exclusive offer is a ' + red_car.getMake()
+
+# 1st the paint function of the Car class is called which is passed the value red so the default value ' ' isn't used.
+# The getColour functions returns the value being stored in colour for red_car which is now red which is printed.
 red_car.paint('red')
-print 'Colour ' + red_car.getColour()
+print 'The colour is ' + red_car.getColour()
 
+# The move function passes the value 15 to the Car class and in the move function adds it to the value held in
+# mileage this is used to create the new mileage figure and is printed to the screen.
 red_car.move(15)
-print 'Mileage ' + str(red_car.getMileage())
-print 'Engine Size ' + red_car.engineSize
-red_car.engineSize = '3.9'
-print 'Engine Size ' + red_car.engineSize
+print 'The mileage is ' + str(red_car.getMileage()) + 'kms'
 
+# The default value for engineSize is ' '.  For the red_car I am assigning it the value 3.7.  The value of
+# engineSize can be changed to any number without changing the Car class.
+red_car.engineSize = '3.7'
+print 'The engine Size is ' + red_car.engineSize
 
-car3 = ElectricCar()
-car3.setColour('White')
-car3.setMileage(500)
-print('\ncar3 the mileage is ' + str(car3.getMileage()))
-car3.setNumberOfFuelCells(2)
-car3.move(20)
-print('The mileage is now ' + str(car3.getMileage()))
-car3.engineSize = '3.1'
-print('car3 colour: ' + car3.getColour())
-print('car3 numberFuelCells: ' + str(car3.getNumberOfFuelCells()))
-print 'Engine Size ' + car3.engineSize
+# A ElectricCar object is called by car2 and can now use the functions of an ElectricCar class.  Similar functionality
+# as red_car in make function.
+car2 = ElectricCar()
+car2.setMake('Nissan LEAF')
+print 'Our environment friendly option ' + car2.getMake()
+
+# Unlike the red_car which used the paint function here I am using the setColour function which takes in self and
+# colour as variables in this case while.  The getColour function returns the value that is held in colour.  In this
+# case the value of colour was changed from ' ' to White which is displayed to the user.
+car2.setColour('White')
+print('The colour is ' + car2.getColour())
+
+# Similar functionality in mileage, move and engineSize except in this case Mileage is at 300 instead of the
+# default value of 0.  This results in the mileage starting at 300 and becoming 320 after the move function.
+car2.setMileage(300)
+car2.move(20)
+print('The mileage is ' + str(car2.getMileage()))
+car2.engineSize = '3.1'
+print 'The engine Size is ' + car2.engineSize
+
+# Unlike petrol and diesel cars which have fuel cylinders electric cars require fuel cells to run.  The function
+# setNumberOfFuelCells takes in 2 values self and the value for fuel cells in this case 2.  The next line prints
+# an appropriate message and uses the getNumberOfFuelCells which returns the value held in the variable which is 2.
+car2.setNumberOfFuelCells(2)
+print('The number of fuel cells is ' + str(car2.getNumberOfFuelCells()))
+
 
 
 car4 = PetrolCar()
