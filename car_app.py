@@ -2,7 +2,7 @@
 # to the user.  red_car is the name of the 1st object that takes in the functions from the generic Car base class.
 # DBS Car Rental is the name of the client so they will appear on the welcome message.
 
-from car import Car, ElectricCar, PetrolCar, DieselCar
+from car import Car, ElectricCar, PetrolCar, DieselCar, HybridCar
 
 print 'Welcome to DBS Car Rental below is a list of available cars and the car details\n.'
 red_car = Car()
@@ -29,13 +29,14 @@ print 'The mileage is ' + str(red_car.getMileage()) + 'kms'
 red_car.engineSize = '3.7'
 print 'The engine Size is ' + red_car.engineSize
 
+
 # A ElectricCar object is called by car2 and can now use the functions of an ElectricCar class.  Similar functionality
 # as red_car in make function.  # Unlike the red_car which used the paint function here I am using the setColour
 # function which takes in self and colour as variables in this case while.  The getColour function returns the value
 # held in colour.  In this case the value of colour was changed from ' ' to White which is displayed to the user.
 car2 = ElectricCar()
 car2.setMake('Nissan LEAF')
-print 'Our environment friendly option ' + car2.getMake()
+print '\nOur environment friendly option is ' + car2.getMake()
 
 car2.setColour('White')
 print('The colour is ' + car2.getColour())
@@ -47,29 +48,77 @@ print('The colour is ' + car2.getColour())
 # an appropriate message and uses the getNumberOfFuelCells which returns the value held in the variable which is 2.
 car2.setMileage(300)
 car2.move(20)
-print('The mileage is ' + str(car2.getMileage()))
-car2.engineSize = '3.1'
+print('The mileage is ' + str(car2.getMileage())) + 'kms'
+car2.engineSize = '2.1'
 print 'The engine Size is ' + car2.engineSize
 
 car2.setNumberOfFuelCells(2)
 print('The number of fuel cells is ' + str(car2.getNumberOfFuelCells()))
 
 
-car4 = PetrolCar()
-car4.setColour('Blue')
-car4.setMileage(800)
-car4.setNumberOfFuelCylinders(3)
-car4.move(20)
-print('\ncar4 colour: ' + car4.getColour())
-print('car4 numberFuelCylinders: ' + str(car4.getNumberOfFuelCylinders()))
+# A HybridCar Class is called by car3 allowing it to use the functions and variables of the class.  A hybrid is
+# 1 part standard motor car and 1 part electric car so it will use a cylinder and a cell function.  The make
+# takes in the value Toyota Prius and prints a message to the user.  The colour is set at blue and printed.
+# Same functionality as other mileage in this case 100 is the value that is set, next 17 is added using move
+# resulting in a value of 117kms.  The engineSize variable is set as 3.1.  Hybrid cars require both cells and
+# cylinders so it will use both functions.
+car3 = HybridCar()
+car3.setMake('Toyota Prius')
+print '\nOur hybrid option is ' + car3.getMake()
 
+car3.setColour('Blue')
+print('The colour is ' + car3.getColour())
+
+car3.setMileage(100)
+car3.move(17)
+print('The mileage is ' + str(car3.getMileage())) + 'kms'
+car3.engineSize = '3.1'
+print 'The engine Size is ' + car3.engineSize
+
+car3.setNumberOfFuelCells(2)
+print('The number of fuel cells is ' + str(car3.getNumberOfFuelCells()))
+car3.setNumberOfFuelCylinders(1)
+print('The number of fuel cylinders is ' + str(car3.getNumberOfFuelCylinders()))
+
+
+# Car4 calls the PetrolCar class and performs similar functions as other class'.  The colour is red, mileage
+# is set to 150 and increased by 25 to 175kms.  The engine size is set at 2.9.  The petrol car is a Toyota Corolla
+# and has 3 cylinders set as the value for the variable NumberOfFuelCylinders.
+car4 = PetrolCar()
+car4.setMake('Toyota Corolla')
+print '\nOur petrol option is ' + car4.getMake()
+
+car4.setColour('Red')
+print('The colour is: ' + car4.getColour())
+
+car4.setMileage(150)
+car4.move(25)
+print('The mileage is ' + str(car4.getMileage())) + 'kms'
+car4.engineSize = '2.9'
+print 'The engine Size is ' + car4.engineSize
+
+car4.setNumberOfFuelCylinders(3)
+print('The number of fuel cylinders is ' + str(car4.getNumberOfFuelCylinders()))
+
+
+# Car5 is calling a DieselCar objects and will implement its functions and variables.  Similar to other class'
+# the car sets a model and returns it in this case Mercedes Benz, the colour is set as silver, the mileage is
+# 1000 and increased by 40 to 1040 as the mileage returned, the engineSize is 3.2 and the car uses 5 cylinders.
 car5 = DieselCar()
-car5.setColour('Green')
+car5.setMake('Mercedes Benz')
+print '\nOur diesel option is ' + car4.getMake()
+
+car5.setColour('Silver')
+print('The colour is ' + car5.getColour())
+
 car5.setMileage(1000)
+car5.move(40)
+print('The mileage is ' + str(car5.getMileage())) + 'kms'
+car5.engineSize = '3.2'
+print 'The engine Size is ' + car5.engineSize
+
 car5.setNumberOfFuelCylinders(5)
-car5.move(20)
-print('\ncar5 colour: ' + car5.getColour())
-print('car5 numberFuelCylinders: ' + str(car5.getNumberOfFuelCylinders()))
+print('The number of fuel cylinders is ' + str(car5.getNumberOfFuelCylinders()))
 
 class Dealership(object):
 
