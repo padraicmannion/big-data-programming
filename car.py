@@ -1,8 +1,7 @@
 # define a class for a car
 # implement car object
 # init is a name used for when the fields need to be made private (naming convention)
-# although in python it's not really possible to have a truly private function, class
-# etc because it's not Pythonic.  The class Car inherits from the object base class.
+# The class Car inherits from the object base class.
 # A car has the variables colour, make, mileage and engineSize for the car base class.
 # By using a single or double _ before the variable name defines it as private.
 # Private protects the variables from change and means anyone can implement them using
@@ -50,12 +49,12 @@ class Car(object):
 class ElectricCar(Car):
     # The 1st function takes in all the functions/variables that make up Car and adds a new
     # variable called numberOfFuelCells.  As in Car getter and setters are used to access the object.
-    # The electric car's will have 1 fuel cell as the default value.  While most cars have fuel cylinders
+    # The electric car's will have 2 fuel cells as the default value.  While most cars have fuel cylinders
     # electric cars require fuel cells to run.
 
     def __init__(self):
         Car.__init__(self)
-        self.__numberOfFuelCells = 1
+        self.__numberOfFuelCells = 2
 
     def getNumberOfFuelCells(self):
         return self.__numberOfFuelCells
@@ -96,3 +95,26 @@ class DieselCar(Car):
 
     def setNumberOfFuelCylinders(self, value):
         self.__numberOfFuelCylinders = value
+
+class HybridCar(Car):
+    # A HybridCar sub class of car is created.  It inherits all the functions/variables
+    # from base class car.  And uses both fuel cylinders and fuel cells.  The default value for both
+    # cells and cylinders is 1.  Getter and setter functions allow outside functions to access these
+    # variables and functions without changing the implementation.
+
+    def __init__(self):
+        Car.__init__(self)
+        self.__numberOfFuelCylinders = 1
+        self.__numberOfFuelCells = 1
+
+    def getNumberOfFuelCylinders(self):
+        return self.__numberOfFuelCylinders
+
+    def setNumberOfFuelCylinders(self, value):
+        self.__numberOfFuelCylinders = value
+
+    def getNumberOfFuelCells(self):
+        return self.__numberOfFuelCells
+
+    def setNumberOfFuelCells(self, value):
+        self.__numberOfFuelCells = value

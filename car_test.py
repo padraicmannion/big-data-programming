@@ -3,7 +3,7 @@
 # class can use its functions.  First tests is on the generic Car base class and is called TestCar.
 
 import unittest
-from car import Car, ElectricCar, PetrolCar, DieselCar
+from car import Car, ElectricCar, PetrolCar, DieselCar, HybridCar
 
 
 class TestCar(unittest.TestCase):
@@ -30,7 +30,7 @@ class TestCar(unittest.TestCase):
         self.assertEqual('Ferrari', self.car.getMake())
 
     def test_car_colour(self):
-        # First the defualt value for colour of ' ' is tested called from the Car class.  Next the paint function is
+        # First the default value for colour of ' ' is tested called from the Car class.  Next the paint function is
         # used to test changing the colour of a car object.  In this case the car is painted red so the colour
         # becomes red which is tested next.
         self.assertEqual(' ', self.car.getColour())
@@ -39,16 +39,16 @@ class TestCar(unittest.TestCase):
 
 
 class TestElectricCar(unittest.TestCase):
-    # The ElectricCar calls itslef using self.
+    # The ElectricCar calls itself using self.
     def setUp(self):
         self.electric_car = ElectricCar()
 
     def test_car_fuel_cells(self):
-        # The default value for an electric car is called from the ElectricCar class which is 1 which is tested to
+        # The default value for an electric car is called from the ElectricCar class which is 2 which is tested to
         #  make sure the base class ElectricCar functions are being correctly implemented.  The setNumberOfFuelCells
         # is used to change the default value from 1 to 8, this is tested and it has become 8 so is true.  Note
         # set doesn't change default values held in base class.
-        self.assertEqual(1, self.electric_car.getNumberOfFuelCells())
+        self.assertEqual(2, self.electric_car.getNumberOfFuelCells())
         self.electric_car.setNumberOfFuelCells(8)
         self.assertEqual(8, self.electric_car.getNumberOfFuelCells())
 
@@ -63,11 +63,11 @@ class TestElectricCar(unittest.TestCase):
 class TestPetrolCar(unittest.TestCase):
 
     def setUp(self):
-        # The ElectricCar calls itslef using self.
+        # The ElectricCar calls itself using self.
         self.petrol_car = PetrolCar()
 
     def test_car_fuel_cylinders(self):
-        # Testing a PetrolCar the defaul value of 3 is called from the base class Petrol Car and is tested to
+        # Testing a PetrolCar the default value of 3 is called from the base class Petrol Car and is tested to
         # ensure the base class PetrolCar functions are being correctly implemented.  The setNumberOfFuelCylinders
         # in this case changes the default value from 3 to 7 this is tested and it has become 7 so is true.
         # This is similar to ElectricCar FuelCells implementation but with cylinders instead of cells.
@@ -85,12 +85,12 @@ class TestPetrolCar(unittest.TestCase):
 
 class TestDieselCar(unittest.TestCase):
     def setUp(self):
-        # The DieselCar calls itslef using self.
+        # The DieselCar calls itself using self.
         self.diesel_car = DieselCar()
 
     def test_car_fuel_cylinders(self):
         # This tests fuel_cylinders for a DieselCar class similar to a petrol car however the default value for
-        # number of cylinders is higher for Diesel.  Then setNumberOfFuelCylinders method calls the function
+        # number of cylinders is higher for diesel.  Then setNumberOfFuelCylinders method calls the function
         # from the base class DieselCar to change the value to 8.  This is tested and confirmed to be true.
         self.assertEqual(5, self.diesel_car.getNumberOfFuelCylinders())
         self.diesel_car.setNumberOfFuelCylinders(8)
@@ -102,6 +102,34 @@ class TestDieselCar(unittest.TestCase):
         self.assertEqual(0, self.diesel_car.getMileage())
         self.diesel_car.move(8)
         self.assertEqual(8, self.diesel_car.getMileage())
+
+    class TestHybridCar(unittest.TestCase):
+        def setUp(self):
+            # The HybridCar calls itself using self.
+            self.hybrid_car = HybridCar()
+
+        def test_car_fuel_cylinders(self):
+            # Similar to petrol and diesel except default value is 1.
+            self.assertEqual(1, self.hybrid_car.getNumberOfFuelCylinders())
+            self.hybrid_car.setNumberOfFuelCylinders(4)
+            self.assertEqual(4, self.hybrid_car.getNumberOfFuelCylinders())
+
+        def test_car_fuel_cells(self):
+            # Similar to ElectricCar test_car_fuel_cells.
+            self.assertEqual(1, self.hybrid_car.getNumberOfFuelCells())
+            self.hybrid_car.setNumberOfFuelCells(4)
+            self.assertEqual(4, self.hybrid_car.getNumberOfFuelCells())
+
+        def test_car_mileage(self):
+            # As in other cases testing the mileage default value.  Then entering a value for move to ensure
+            # it moves that amount to test the mileage of a car.
+            self.assertEqual(0, self.hybrid_car.getMileage())
+            self.hybrid_car.move(12)
+            self.assertEqual(12, self.hybrid_car.getMileage())
+
+
+
+
 
 # Runs all the test cases.
 if __name__ == '__main__':
