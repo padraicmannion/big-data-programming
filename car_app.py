@@ -187,6 +187,22 @@ class Dealership(object):
         # conditions handle all output petrol, diesel, electric, hybrid and unexpected output.  Assuming a successful
         # rental and removal of stock using the rent function the stock_count function is called displaying
         # how many cars of each type are left in the car pool.
+        # whatCarReturning is used to ask the user to enter the type of car they want to return.
+
+        returning = raw_input('Would you like to return a car you have rented? yes/no\n')
+        if returning == 'yes' or returning == 'y':
+            whatCarReturning = raw_input('What car do you want to return? petrol/diesel/electric/hybrid\n')
+            if whatCarReturning == 'petrol' or whatCarReturning == 'p':
+                self.petrol_cars.append(self.rental_cars(PetrolCar()))
+            elif whatCarReturning == 'diesel' or whatCarReturning == 'd':
+                self.diesel_cars.append(self.rental_cars(DieselCar()))
+            elif whatCarReturning == 'electric' or whatCarReturning == 'e':
+                self.electric_cars.append(self.rental_cars(ElectricCar()))
+            elif whatCarReturning == 'hybrid' or whatCarReturning == 'h':
+                self.hybrid_cars.append(self.rental_cars(HybridCar()))
+            else:
+                print 'Please enter only valid car types'
+
         answer = raw_input('Would you like to rent a car? yes/no\n')
         if answer == 'yes' or answer == 'y':
             answer = raw_input('What type would you like? petrol/diesel/electric/hybrid\n')
@@ -217,8 +233,7 @@ class Dealership(object):
 # given the default value of y this way the user will go through the program at least once.  A while loop is
 # created, while the user enters yes or y the process_car_rental function runs.  The returning variable is for
 # if the user wants to return a car they have rented.  The default value for returning is n because the assumption
-# in most cases is they have yet to take out a rental yet.  whatCarReturning is used to ask the user to enter the
-# type of car they want to return.
+# in most cases is they have yet to take out a rental yet.
 
 dealership = Dealership()
 print '\nNote: You can also type 1st letter of the word for all text answers.\n'
@@ -229,17 +244,4 @@ returning = 'n'
 
 while proceed == 'yes' or proceed == 'y':
     dealership.process_car_rental()
-    returning =  raw_input('Would you like to return a car you have rented? yes/no\n')
-    if returning == 'yes' or returning == 'y':
-        whatCarReturning = raw_input('What car do you want to return? petrol/diesel/electric/hybrid\n')
-        if whatCarReturning == 'petrol' or whatCarReturning == 'p':
-            petrol_cars.append(rental_cars(PetrolCar()))
-        elif whatCarReturning == 'diesel' or whatCarReturning == 'd':
-            diesel_cars.append(rental_cars(DieselCar()))
-        elif whatCarReturning == 'electric' or whatCarReturning == 'e':
-            electric_cars.append(rental_cars(ElectricCar()))
-        elif whatCarReturning == 'hybrid' or whatCarReturning == 'h':
-            hybrid_cars.append(rental_cars(HybridCar()))
-        else:
-            print 'Please enter only valid car types'
     proceed = raw_input('Would you like to rent more car(s)? yes/no\n')
