@@ -20,14 +20,14 @@ red_car.paint('red')
 print 'The colour is ' + red_car.getColour()
 
 # The move function passes the value 15 to the Car class and in the move function adds it to the value held in
-# mileage this is used to create the new mileage figure and is printed to the screen.
+# mileage this is used to create the new mileage figure and is printed to the screen in kilometers
 # The default value for engineSize is ' '.  For the red_car I am assigning it the value 3.7.  The value of
 # engineSize can be changed to any number without changing the Car class.
 red_car.move(15)
 print 'The mileage is ' + str(red_car.getMileage()) + 'kms'
 
 red_car.engineSize = '3.7'
-print 'The engine Size is ' + red_car.engineSize
+print 'The engine size is ' + red_car.engineSize
 
 
 # A ElectricCar object is called by car2 and can now use the functions of an ElectricCar class.  Similar functionality
@@ -50,7 +50,7 @@ car2.setMileage(300)
 car2.move(20)
 print('The mileage is ' + str(car2.getMileage())) + 'kms'
 car2.engineSize = '2.1'
-print 'The engine Size is ' + car2.engineSize
+print 'The engine size is ' + car2.engineSize
 
 car2.setNumberOfFuelCells(2)
 print('The number of fuel cells is ' + str(car2.getNumberOfFuelCells()))
@@ -73,7 +73,7 @@ car3.setMileage(100)
 car3.move(17)
 print('The mileage is ' + str(car3.getMileage())) + 'kms'
 car3.engineSize = '3.1'
-print 'The engine Size is ' + car3.engineSize
+print 'The engine size is ' + car3.engineSize
 
 car3.setNumberOfFuelCells(2)
 print('The number of fuel cells is ' + str(car3.getNumberOfFuelCells()))
@@ -95,7 +95,7 @@ car4.setMileage(150)
 car4.move(25)
 print('The mileage is ' + str(car4.getMileage())) + 'kms'
 car4.engineSize = '2.9'
-print 'The engine Size is ' + car4.engineSize
+print 'The engine size is ' + car4.engineSize
 
 car4.setNumberOfFuelCylinders(3)
 print('The number of fuel cylinders is ' + str(car4.getNumberOfFuelCylinders()))
@@ -115,7 +115,7 @@ car5.setMileage(1000)
 car5.move(40)
 print('The mileage is ' + str(car5.getMileage())) + 'kms'
 car5.engineSize = '3.2'
-print 'The engine Size is ' + car5.engineSize
+print 'The engine size is ' + car5.engineSize
 
 car5.setNumberOfFuelCylinders(5)
 print('The number of fuel cylinders is ' + str(car5.getNumberOfFuelCylinders()))
@@ -139,9 +139,9 @@ class Dealership(object):
     # ElectricCar objects and appends it to the list electric_cars.
     def create_opening_stock(self):
         for i in range(4):
-           self.electric_cars.append(ElectricCar())
+            self.electric_cars.append(ElectricCar())
         for i in range(24):
-           self.petrol_cars.append(PetrolCar())
+            self.petrol_cars.append(PetrolCar())
         for i in range(8):
             self.diesel_cars.append(DieselCar())
         for i in range(4):
