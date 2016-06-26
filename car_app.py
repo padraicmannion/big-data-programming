@@ -122,7 +122,8 @@ print('The number of fuel cylinders is ' + str(car5.getNumberOfFuelCylinders()))
 
 
 # Creating a Dealership class that inherits from object.  Creates a private function called init.  Basic naming
-# functions for private functions is init or foo.  Next 4 lists are created 1 for each type of car.
+# functions for private functions is init or foo.  Next 4 lists are created 1 for each type of car.  Also a list
+# is created called rental_cars for cars currently on rental.
 class Dealership(object):
 
     def __init__(self):
@@ -130,6 +131,7 @@ class Dealership(object):
         self.petrol_cars = []
         self.diesel_cars = []
         self.hybrid_cars = []
+        self.rental_cars = []
 
     # 40 cars: 60% petrol (24 cars), 20% diesel (8 cars), 10% electric (4 cars) and 10% hybrid (4 cars).
     # As the name of the function suggests this creates the stock for the rental dealership.  I know from
@@ -162,13 +164,14 @@ class Dealership(object):
         # uses the pop operator so for each iteration a car is removed from the car pool until total is equal to amount
         # i.e. however many cars the user wants to rent out For example amount = 3 will cause 3 iterations and
         # 3 cars to be removed from the pool on the 4 iteration 4 < 3 is no longer true so it will break out
-        # of the while loop.
+        # of the while loop.  The car(s) that are taken from the list using the pop method are stored in the list
+        # called rental_cars.
         if len(car_list) < amount:
             print 'Sorry nothing to rent, please try again.'
             return
         total = 0
         while total < amount:
-            car_list.pop()
+            self.rental_cars = car_list.pop()
             total = total + 1
 
     def process_car_rental(self):
@@ -212,13 +215,31 @@ class Dealership(object):
 # that creates the 40 cars.  The print message is displayed so the user knows they can type shorthand for questions.
 # On the 1st use by the user the car pool will be full and this is displayed.  The proceed variable is created and
 # given the default value of y this way the user will go through the program at least once.  A while loop is
-# created, while the user enters yes or y the process_car_rental function runs.
+# created, while the user enters yes or y the process_car_rental function runs.  The returning variable is for
+# if the user wants to return a car they have rented.  The default value for returning is n because the assumption
+# in most cases is they have yet to take out a rental yet.  whatCarReturning is used to ask the user to enter the
+# type of car they want to return.
+
 dealership = Dealership()
 print '\nNote: You can also type 1st letter of the word for all text answers.\n'
 dealership.create_opening_stock()
 dealership.stock_count()
 proceed = 'y'
+returning = 'n'
 
 while proceed == 'yes' or proceed == 'y':
     dealership.process_car_rental()
+    returning =  raw_input('Would you like to return a car you have rented? yes/no\n')
+    if returning == 'yes' or returning == 'y':
+        whatCarReturning = raw_input('What car do you want to return? petrol/diesel/electric/hybrid\n')
+        if whatCarReturning == 'petrol' or whatCarReturning == 'p':
+            petrol_cars.append(rental_cars(PetrolCar()))
+        elif whatCarReturning == 'diesel' or whatCarReturning == 'd':
+            diesel_cars.append(rental_cars(DieselCar()))
+        elif whatCarReturning == 'electric' or whatCarReturning == 'e':
+            electric_cars.append(rental_cars(ElectricCar()))
+        elif whatCarReturning == 'hybrid' or whatCarReturning == 'h':
+            hybrid_cars.append(rental_cars(HybridCar()))
+        else:
+            print 'Please enter only valid car types'
     proceed = raw_input('Would you like to rent more car(s)? yes/no\n')
