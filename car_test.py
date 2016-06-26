@@ -44,6 +44,14 @@ class TestCar(unittest.TestCase):
         self.car.setMake('Honda Civic')
         self.assertEqual('Honda Civic', self.car.getMake())
 
+    def test_car_engineSize(self):
+        # The default engineSize value is ' ' so this is tested first followed by 1.8 and 3.0
+        self.assertEqual(' ', self.car.getEngineSize())
+        self.car.setEngineSize(1.8)
+        self.assertEqual(1.8, self.car.getEngineSize())
+        self.car.setEngineSize(3.0)
+        self.assertEqual(3.0, self.car.getEngineSize())
+
     def test_car_colour_and_paint(self):
         # First the default value for colour of ' ' is tested called from the Car class.  Next the paint function is
         # used to test changing the colour of a car object.  In this case the car is painted red so the colour
@@ -64,7 +72,7 @@ class TestElectricCar(unittest.TestCase):
     def setUp(self):
         self.electric_car = ElectricCar()
 
-    def test_car_fuel_cells(self):
+    def test_electricCar_fuel_cells(self):
         # The default value for an electric car is called from the ElectricCar class which is 2 which is tested to
         #  make sure the base class ElectricCar functions are being correctly implemented.  The setNumberOfFuelCells
         # is used to change the default value from 2 to 8, this is tested and it has become 8 so is true.  5 and 7
@@ -78,7 +86,9 @@ class TestElectricCar(unittest.TestCase):
         self.electric_car.setNumberOfFuelCells(7)
         self.assertEqual(7, self.electric_car.getNumberOfFuelCells())
 
-    def test_car_mileage_and_move(self):
+    def test_electricCar_mileage_and_move(self):
+        # I am testing mileage and move for all cars to ensure correct implementation and because mileage is
+        # an important factor for NCT tests and how many kilometers are on the clock.
         # As in the test_car_mileage 1st the default value is called this time from the ElectricCar class.
         # Move is then called using the value 15 is this is tested against the value retrieved from getMileage
         # which is 15 as well so it's true.  Mileage is then increased by 6.5 to 21.5.  Next the setMileage function
@@ -95,6 +105,17 @@ class TestElectricCar(unittest.TestCase):
         self.assertEqual(40, self.electric_car.getMileage())
         self.electric_car.move(0)
         self.assertEqual(40, self.electric_car.getMileage())
+
+    def test_electricCar_make(self):
+        # Even though make, engineSize, colour and paint are tested in the base class I feel it's important to
+        # have test cases for the subclass' that implement the functions to ensure they are correctly inherited
+        # with the same functionality so the default value ' ' is tested, a string with 1 word and a string with
+        # 2 words.
+        self.assertEqual(' ', self.electric_car.getMake())
+        self.electric_car.setMake('Charger')
+        self.assertEqual('Charger', self.electric_car.getMake())
+        self.electric_car.setMake('Super Charger')
+        self.assertEqual('Super Charger', self.electric_car.getMake())
 
 
 class TestPetrolCar(unittest.TestCase):

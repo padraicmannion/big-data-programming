@@ -1,11 +1,10 @@
-# define a class for a car
-# implement car object
-# init is a name used for when the fields need to be made private (naming convention)
-# The class Car inherits from the object base class.
+# define a class for a car, implement car object, init is a name used for when the fields need to be made
+# private (naming convention).  The class Car inherits from the object base class.
 # A car has the variables colour, make, mileage and engineSize for the car base class.
 # By using a single or double _ before the variable name defines it as private.
 # Private protects the variables from change and means anyone can implement them using
 # getters and setters without changing the base object.
+
 
 class Car(object):
     def __init__(self):
@@ -19,7 +18,9 @@ class Car(object):
         # car object without changing the value held in the private variable.  The move is used to test
         # the car for example 15km's that should make the mileage of the car in turn increase by 15.
         # While get functions only need 1 variable self, all set functions need 2 variables self and
-        # the value that is being changed from the default value.
+        # the value that is being changed from the default value.  It is important to note that EngineSize is the
+        # only variable in this class that isn't marked as private with double underscore which means means it is
+        # called using return self.engineSize as opposed to self.__engineSize.
 
     def getColour(self):
         return self.__colour
@@ -30,11 +31,17 @@ class Car(object):
     def getMileage(self):
         return self.__mileage
 
+    def getEngineSize(self):
+        return self.engineSize
+
     def setColour(self, colour):
         self.__colour = colour
 
     def setMake(self, make):
         self.__make = make
+
+    def setEngineSize(self, engineSize):
+        self.engineSize = engineSize
 
     def setMileage(self, mileage):
         self.__mileage = mileage
