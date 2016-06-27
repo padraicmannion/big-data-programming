@@ -171,7 +171,7 @@ class Dealership(object):
             return
         total = 0
         while total < amount:
-            # self.returningCars = self.rental_cars.append(car_list.pop())
+            self.returningCars = self.rental_cars.append(car_list.pop())
             car_list.pop()
             total = total + 1
 
@@ -190,19 +190,19 @@ class Dealership(object):
         # how many cars of each type are left in the car pool.
         # whatCarReturning is used to ask the user to enter the type of car they want to return.
 
-        # returning = raw_input('Would you like to return a car you have rented? yes/no\n')
-        # if returning == 'yes' or returning == 'y':
-            # whatCarReturning = raw_input('What car do you want to return? petrol/diesel/electric/hybrid\n')
-            # if whatCarReturning == 'petrol' or whatCarReturning == 'p':
-                # self.petrol_cars.append(self.rental_cars(PetrolCar()))
-            #elif whatCarReturning == 'diesel' or whatCarReturning == 'd':
-                #self.diesel_cars.append(self.rental_cars(DieselCar()))
-            #elif whatCarReturning == 'electric' or whatCarReturning == 'e':
-                #self.electric_cars.append(self.rental_cars(ElectricCar()))
-            #elif whatCarReturning == 'hybrid' or whatCarReturning == 'h':
-                #self.hybrid_cars.append(self.rental_cars(HybridCar()))
-            #else:
-                #print 'Please enter only valid car types'
+        returning = raw_input('Would you like to return a car you have rented? yes/no\n')
+        if returning == 'yes' or returning == 'y':
+            whatCarReturning = raw_input('What car do you want to return? petrol/diesel/electric/hybrid\n')
+        if whatCarReturning == 'petrol' or whatCarReturning == 'p':
+            self.petrol_cars.append(PetrolCar())
+        elif whatCarReturning == 'diesel' or whatCarReturning == 'd':
+            self.diesel_cars.append(DieselCar())
+        elif whatCarReturning == 'electric' or whatCarReturning == 'e':
+            self.electric_cars.append(ElectricCar())
+        elif whatCarReturning == 'hybrid' or whatCarReturning == 'h':
+            self.hybrid_cars.append(HybridCar())
+        else:
+            print 'Please enter only valid car types'
 
         answer = raw_input('Would you like to rent a car? yes/no\n')
         if answer == 'yes' or answer == 'y':
@@ -245,5 +245,4 @@ returning = 'n'
 
 while proceed == 'yes' or proceed == 'y':
     dealership.process_car_rental()
-    #print self.returntingCars
     proceed = raw_input('Would you like to rent more car(s)? yes/no\n')
