@@ -172,7 +172,6 @@ class Dealership(object):
         total = 0
         while total < amount:
             self.returningCars = self.rental_cars.append(car_list.pop())
-            car_list.pop()
             total = total + 1
 
     def process_car_rental(self):
@@ -189,20 +188,6 @@ class Dealership(object):
         # rental and removal of stock using the rent function the stock_count function is called displaying
         # how many cars of each type are left in the car pool.
         # whatCarReturning is used to ask the user to enter the type of car they want to return.
-
-        returning = raw_input('Would you like to return a car you have rented? yes/no\n')
-        if returning == 'yes' or returning == 'y':
-            whatCarReturning = raw_input('What car do you want to return? petrol/diesel/electric/hybrid\n')
-        if whatCarReturning == 'petrol' or whatCarReturning == 'p':
-            self.petrol_cars.append(PetrolCar())
-        elif whatCarReturning == 'diesel' or whatCarReturning == 'd':
-            self.diesel_cars.append(DieselCar())
-        elif whatCarReturning == 'electric' or whatCarReturning == 'e':
-            self.electric_cars.append(ElectricCar())
-        elif whatCarReturning == 'hybrid' or whatCarReturning == 'h':
-            self.hybrid_cars.append(HybridCar())
-        else:
-            print 'Please enter only valid car types'
 
         answer = raw_input('Would you like to rent a car? yes/no\n')
         if answer == 'yes' or answer == 'y':
@@ -226,6 +211,38 @@ class Dealership(object):
 
             else:
                 print 'Please enter only valid input.'
+
+            returning = raw_input('Would you like to return a car you have rented? yes/no\n')
+            if returning == 'yes' or returning == 'y':
+                while True:
+                    whatCarReturning = raw_input('What car do you want to return? petrol/diesel/electric/hybrid\n')
+                    if (whatCarReturning == 'petrol' or whatCarReturning == 'p') and len(self.petrol_cars) == 24:
+                        print 'The max no of petrol cars 24 is already full you have not rented a petrol car.'
+                        continue
+                    elif (whatCarReturning == 'diesel' or whatCarReturning == 'd') and len(self.diesel_cars) == 8:
+                        print 'The max no of diesel cars 8 is already full you have not rented a diesel car.'
+                        continue
+                    elif (whatCarReturning == 'electric' or whatCarReturning == 'e') and len(self.petrol_cars) == 4:
+                        print 'The max no of electric cars 4 is already full you have not rented a electric car.'
+                        continue
+                    elif (whatCarReturning == 'hybrid' or whatCarReturning == 'h') and len(self.hybrid_cars) == 4:
+                        print 'The max no of hbrid cars 4 is already full you have not rented a hybrid car.'
+                        continue
+                    else:
+                        break
+
+            if whatCarReturning == 'petrol' or whatCarReturning == 'p':
+                self.petrol_cars.append(PetrolCar())
+
+            elif whatCarReturning == 'diesel' or whatCarReturning == 'd':
+                self.diesel_cars.append(DieselCar())
+
+            elif whatCarReturning == 'electric' or whatCarReturning == 'e':
+                self.electric_cars.append(ElectricCar())
+            elif whatCarReturning == 'hybrid' or whatCarReturning == 'h':
+                self.hybrid_cars.append(HybridCar())
+            else:
+                print 'Please enter only valid car types'
 
 # This marks the start of the dealership class after Class Dealership.  dealership is the variable name that is
 # used for handling calling the functions, dealership.create_opening_stock calls the function to use the for loop

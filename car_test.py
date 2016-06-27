@@ -1,6 +1,6 @@
 # The unittest library is imported to use its methods to test the program functionality.
 # The various types of car are imported including the generic Car base class so the test
-# class can use its functions.  First tests is on the generic Car base class and is called TestCar.
+# class can use its functions.  First tests are on the generic Car base class and is called TestCar.
 
 import unittest
 from car import Car, ElectricCar, PetrolCar, DieselCar, HybridCar
