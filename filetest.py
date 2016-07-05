@@ -21,7 +21,7 @@ class TestFile(unittest.TestCase):
         # Function to test the authors commits starts by looking for an author that isn't in the list in this case it
         # will return 0 because the author will have 0 commits.  After I tested for specific authors from
         # which I knew what the results of no of commits are e.g. dred0001 commited 2, murari.krishnan commited 1,
-        # robert.hanaway commited 152 and viacheslav.vdovenko commited 191.
+        # robert.hanaway commited$ 152 and viacheslav.vdovenko commited 191.
         self.filechecker.move(15)
         self.assertEqual(15, self.filechecker.getMileage())
         self.filechecker.move(12)
@@ -41,6 +41,8 @@ class TestFile(unittest.TestCase):
         # The value for len(commits) is 422.  Function for testing the number of commits in the file.
         self.filechecker.setEngineSize(1.8)
         self.assertEqual(1.8, self.filechecker.getEngineSize())
+
+# function for revison, author, date, comment, line_count and changes needed
 
 
 
