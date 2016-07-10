@@ -1,10 +1,18 @@
+#################################################################################################################
+# Name = Padraic Mannion
+# Student number = 10340056
+# versions =
+#################################################################################################################
+
+# The operator library is brought in for later use in iterating over a dictionary to avoid the issue
+# of unpacking problems when dealing with key, value pairs.
 # Take in a file named changes_python.txt and assign it to the variable fname.
 # This opens the file 1 line at a time in read mode.
-# The print function returns how big the file that is read in.
 # The variable sep looks for lines that have 72 - hyphens.
+
+import operator
 fname = 'changes_python.txt'
 data = [line.strip() for line in open(fname, 'r')]
-print 'The file ', fname, ' has', len(data), ' lines.'
 sep = 72*'-'
 
 
@@ -20,6 +28,7 @@ class Commit:
         self.comment_line_count = comment_line_count
         self.changes = changes
         self.comment = comment
+
 
     # Creates a function for returning the commits and the details of each commit to the user including the revision
     # author, date, comment and changes.
@@ -39,7 +48,7 @@ index = 0
 commits_for_each_author = {}
 authors = []
 
-# 1st a welcome message is displayed to the user and is given 2 choices 1 for authors and 2 for all details.
+# 1st a welcome message is displayed to the user and is given 2 choices 1 for interesting things and 2 for all details.
 # if anything else will return to the user_choice question asking for correct input.  The user_choice
 # variable is taken in as a int variable.  A while true loop is used to ensure an integer is passed to the variable
 # called user_choice if the user types a integer it will break out of the loop.  If not an appropriate message
@@ -48,7 +57,7 @@ authors = []
 
 while True:
     try:
-        user_choice = int(raw_input('Welcome to the file testing program\npress 1 for authors and 2 for all details:\n'))
+        user_choice = int(raw_input('Welcome to the file testing program\npress 1 for interesting things and 2 for all details:\n'))
         if user_choice < 1:
             print 'You have entered an invalid number the number cannot be less than 1.'
             continue
@@ -65,7 +74,7 @@ while True:
 # author not in author is used to check if the authors name is already in the list or is it a new author.
 # Next author[author] = [] gives the user an empty commit array.
 # It sets up the revision variable as with author the whitespace is removed.
-# The Author Choice
+# The Interesting things choice.
 if user_choice == 1:
     while True:
         try:
@@ -111,19 +120,37 @@ if user_choice == 2:
         except IndexError:
             break
 
-
-# The print is used to print the number of commits in the file.  Reverse is used on the commits list to sort the order.
-print 'There are ',(len(commits)), ' commits in the file.'
+# Reverse is used on the commits list to sort the order.
 commits.reverse()
 
+
+# The interesting option.  This prints the number of revisions in the authors list.
+# For each author print a message showing how many commits they sent this is done by parsing author as a string and
+# str(len(commits_for_each_author[author])) is used to count the number of revisions done by each author and
+# print the number of commits next to the authors name.
+
+# An interesting thing is who is the author that made the most commits using max and iteritems function on the
+# dictionary commits_for_each_author, the itemgetter constructs a callable that assumes iterable object dictionary as
+# input an fetches n-th element out of it.
+# ref: http://stackoverflow.com/questions/18595686/how-does-operator-itemgetter-and-sort-work-in-python
+# The index [1] [0] holds the authors name and in the next line [1] [1] is used to print another interesting thing
+# the revisions that the max author committed to the file.  Next the author count is printed using the len function
+# to get the numbers of authors which should be 10.
 if user_choice == 1:
-    print 'Author Count : ' + str(len(authors))
     print commits_for_each_author
     for author in commits_for_each_author:
-        print str(author) + ' commited ' + str(len(commits_for_each_author[author]))
+        print str(author) + ' committed ' + str(len(commits_for_each_author[author]))
+    print 'The person with the most commits is', max(commits_for_each_author.iteritems(), key=operator.itemgetter(1))[0]
+    print 'The revisions they made were: ', max(commits_for_each_author.iteritems(), key=operator.itemgetter(1))[1]
+    print 'The Author Count is : ' + str(len(authors))
+
 
 # The get_commit_comment function is called which uses return to print all the details of each commit back to the user.
 if user_choice == 2:
     for index, commit in enumerate(commits):
         print(commit.get_commit_comment())
 
+# The print is used to print the number of commits in the file.
+# The 2nd print returns how big the file that is read in.
+print 'There are',(len(commits)), 'commits in the file.'
+print 'The file', fname, 'has', len(data), 'lines.'
